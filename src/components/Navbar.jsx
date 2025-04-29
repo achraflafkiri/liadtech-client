@@ -1,22 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <nav className="bg-blue-600 text-white shadow-md">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
-          <div className="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 mr-2" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-            </svg>
+          {/* Logo and Brand */}
+          <Link to="/" className="flex items-center">
             <span className="font-bold text-xl">Événements Sportifs</span>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex space-x-4 items-center">
+            <a href="/" className="hover:text-blue-200 font-medium">Accueil</a>
+            <a href="/add" className="bg-white text-blue-600 px-3 py-2 rounded hover:bg-blue-100 transition">Ajouter un événement</a>
           </div>
-          <div className="space-x-4">
-            <Link to="/" className="hover:text-blue-200 font-medium">Accueil</Link>
-            <Link to="/add" className="bg-white text-blue-600 px-3 py-2 rounded hover:bg-blue-100 transition">Ajouter un événement</Link>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button
+              onClick={toggleMenu}
+              className="focus:outline-none"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {isMenuOpen ? (
+                <X size={24} />
+              ) : (
+                <Menu size={24} />
+              )}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden py-4 border-t border-blue-500">
+            <div className="flex flex-col space-y-4">
+              <a
+                href="/"
+                className="hover:bg-blue-700 py-2 px-2 rounded"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Accueil
+              </a>
+              <a
+                href="/add"
+                className="bg-white text-blue-600 px-3 py-2 rounded hover:bg-blue-100 transition"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Ajouter un événement
+              </a>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
