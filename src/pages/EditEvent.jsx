@@ -65,7 +65,7 @@ const EditEvent = () => {
     
     setErrors(newErrors);
     
-    return Object.keys(newErrors).length === 0;
+    return Object.keys(newErrors).length === 0; // return true or false
   };
 
   const handleSubmit = async (e) => {
@@ -89,7 +89,7 @@ const EditEvent = () => {
       setSuccessMessage('Événement mis à jour avec succès !');
       setTimeout(() => {
         navigate('/');
-      }, 1500);
+      }, 1500); // navigate to home page after 1500 ms
     } catch (error) {
       console.error('Erreur lors de la mise à jour de l\'événement:', error);
       setErrorMessage('Erreur lors de la mise à jour de l\'événement');
