@@ -61,6 +61,9 @@ const AddEvent = () => {
       setTitle('');
       setDate('');
       setLocation('');
+
+      // navigate to home
+      navigate("/")
       
     } catch (error) {
       console.error('Error adding event:', error);
