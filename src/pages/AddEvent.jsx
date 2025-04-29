@@ -28,7 +28,7 @@ const AddEvent = () => {
       newErrors.location = 'Le lieu est obligatoire';
     }
 
-    console.log("newErrors: ", newErrors);
+    // console.log("newErrors: ", newErrors);
     
     setErrors(newErrors);
     
